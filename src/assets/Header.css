@@ -1,9 +1,12 @@
 .Menu{
-	background:white;
-	height:70px;
-	line-height: 50px;
+	background:linear-gradient(white,#f9f3f2);
+	height:80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	text-align:center;
-	box-shadow: 5px 10px 5px whitesmoke;
+	box-shadow: 0.5px 0.5px 3px grey;
+/*	border-bottom: 2px solid #c6af96;*/
 }
 
 .Menu h2{
