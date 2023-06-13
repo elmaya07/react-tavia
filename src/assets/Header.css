@@ -1,6 +1,6 @@
 .Menu{
-	background:linear-gradient(white,#f9f3f2);
-	height:80px;
+	background-color: white;	
+	height:90px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -9,6 +9,26 @@
 /*	border-bottom: 2px solid #c6af96;*/
 	position: relative;
 	zIndex:100000;
+
+}
+
+@media only screen and (max-width: 700px) {
+  .Menu {
+   height:60px;
+  }
+}
+
+.Menu::before{
+	background-image:url('./img/Group 4.png');
+	 background-size: auto 100% ;
+	background-repeat: no-repeat;
+	background-position: right;
+ 	background-origin: content-box;
+	content: '';
+	display: block; 
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
 
 .Menu h2{

@@ -24,6 +24,7 @@ function Auth(props) {
 	const [regRef,setRegRef] = useState(false);
 
 	const setLogin = ()=>{
+		if(email=='' || password == '') return false;
 		let data = {
 			email:email,
 			password:password
@@ -37,6 +38,7 @@ function Auth(props) {
 	}
 
 	const setRegister = ()=>{
+		if(email=='' || password == '') return false;
 		setRegRef(true)
 		let data = {
 			nama:namaLakiLaki||namaPerempuan,
@@ -75,7 +77,8 @@ function Auth(props) {
 
 	useEffect(()=>{
 		// loginRef.current.disabled
-	})
+		props.setReset()
+	},[])
 
    if(props.dataLogin.isLogged===true){
 	 	return <Navigate to="/profile" replace={true} />
@@ -88,9 +91,11 @@ function Auth(props) {
   	<Header />
   	
     <Container fluid className="mtop">    
-    	<br/><br/>	
 
-    	<Row  className="justify-content-md-center mt-4">
+
+
+    	<br/><br/>	    	
+    	<Row  className="justify-content-md-center  mobile">
     		<Col lg={7}>
     			{props.dataLogin.msg !== "" && (<Alert variant="danger">{props.dataLogin.msg }</Alert>)}
     		</Col>
@@ -98,9 +103,9 @@ function Auth(props) {
         
 
       <Row>
-        <Col xs={12} lg={6}>        	
-        	<Row className="justify-content-md-center">
-        		<Col lg={8}>
+        <Col xs={12} lg={6} className="mt-4">        	
+        	<Row className="justify-content-md-center mt-4">
+        		<Col lg={7}>
         			<h3  style={{color:'#c6af96',fontWeight:'bold'}}>Sign In</h3>
         			<p style={{color:'#c6af96'}}>Masuk dan buat undangan pernikahan kamu, kemudian share undangan kamu</p>
 	        		<Form>
@@ -122,10 +127,11 @@ function Auth(props) {
 					      </InputGroup>
 					     <Row>
 					     	<Col>
-					     		<Button variant="primary" disabled={loginRef}  onClick={setLogin} className="btn">Sign In</Button>						     	 	
+					     		<span  style={{fontWeight:'bold',color:'#c6af96',display:'inline-block',float:'left'}}> <Link style={{color:'#c6af96'}} to="/lupa-password">Lupa Password</Link> </span> 					     		 
 					     	</Col>
-					     	<Col className="justify-content-md-end">					     		 
-					     		<span  style={{fontWeight:'bold',color:'#c6af96',display:'inline-block',float:'right'}}> <Link style={{color:'#c6af96'}} to="/lupa-password">Lupa Password</Link> </span> 					     		 
+					     	<Col className="justify-content-md-end">	
+					     	<Button variant="primary" style={{display:'inline-block',float:'right'}} onClick={setLogin} className="btn">Sign In</Button>						     	 					     		 
+					     		
 					     	</Col>
 					     </Row>
 					    </Form>
@@ -133,8 +139,8 @@ function Auth(props) {
         	</Row>
         </Col>
         <Col xs={12} lg={6} style={{borderLeft:'2px solid #c6af96'}}>
-        <Row className="justify-content-md-center"  >
-        		<Col lg={8} >        	 
+        <Row className="justify-content-md-center mtopphone"  >
+        		<Col lg={7} >        	 
         	
         			<Col lg={12} className="d-flex justify-content-end" ><h3  style={{color:'#c6af96',fontWeight:'bold'}}>Sign Up</h3></Col>
         			<Col lg={12} className="d-flex justify-content-end" style={{color:'#c6af96'}}>Buat undangan pernikahanmu dengan elegan</Col>
@@ -167,7 +173,7 @@ function Auth(props) {
 					     <Row>
 					      
 					     	<Col className="justify-content-md-around">					     		 
-					     		 	<Button onClick={setRegister} disabled={regRef} variant="primary" className="btn">Buat Undanganmu Sekarang</Button>					     		 
+					     		 	<Button onClick={setRegister} disabled={regRef}  variant="primary" className="btn w-100">Buat Undanganmu Sekarang</Button>					     		 
 					     	</Col>
 					     </Row>
 					    </Form>

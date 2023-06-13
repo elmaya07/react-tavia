@@ -24,6 +24,7 @@ export default function LupaPassword(){
 
 
 	const gantiPassword = ()=>{
+		if(email=='') return false;
 		setLoginRef(true)
 		dispatch(gantiPasswordActions(email));
 		setTimeout(()=>{
@@ -35,7 +36,7 @@ export default function LupaPassword(){
 		}).catch((error) => {
 		    setLoginRef(false)
 		})
-		
+
 	}
 
 	return(

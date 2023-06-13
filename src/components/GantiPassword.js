@@ -57,10 +57,12 @@ export default function GantiPassword(){
 	const [isOk,setIsOk]  =useState(false);
 	const gantiPassword = ()=>{
 
-		if(password!=password1 || String(password).length < 6){
+		if(password!=password1){
 			setIsOk(true)
 			return false;
 		}
+
+		if(String(password).length < 6 || password=='' || password1 =='') return false;
 
 		const d = {
 			password:password,
