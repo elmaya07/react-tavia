@@ -5,6 +5,7 @@ import './assets/Header.css';
 import './assets/Auth.css';
 import Header from './components/Header';
 import Auth from './components/Auth';
+import LupaPassword from './components/LupaPassword';
 import Profile from './components/Profile';
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom';
 import {ProtectedRoute} from './utility/ProtectedRoute'
@@ -38,6 +39,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Auth/>} />
         <Route path="/verif" element={<Verif/>} />
+        <Route path="/lupa-password" element={<LupaPassword/>} />
+        LupaPassword
         <Route path="/profile" element={
           <ProtectedRoute isLogged={state.isLogged}>
               <Profile />

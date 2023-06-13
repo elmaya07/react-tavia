@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react';
 import {Container,Row,Col,Form,Button } from 'react-bootstrap/';
 import Header from './Header'
 import {connect} from 'react-redux';
+import Garfik from './Garfik';
 import {getUser,setLogout} from '../state/actions'
 
 function Profile(props){  
@@ -15,21 +16,25 @@ function Profile(props){
 	},[])
 	return (
 		<>
+			<Garfik/>
 			<Header/>
-			<br/>
-		 		<br/>	
-		 	<Container fluid>
-		 		<Row className="justify-content-md-center">		 				 			 
-		 			<Col xs={2} sm={2} md={2} lg={2}>
-		 				<center><div style={{border:'2px solid grey',width:'120px',height:'120px',borderRadius:'50%',overflow:'hidden'}}>
+			<div style={{height:'90px'}}></div>
+			 	
+		 	<Container fluid className="mt-4">
+		 		<Row className=" d-flex justify-content-center mt-4">		 				 			 
+		 			<Col xs={5} sm={5} md={5} lg={5} className=" d-flex justify-content-center">
+		 				 <div style={{border:'5px solid grey',width:'120px',height:'120px',borderRadius:'50%',overflow:'hidden'}}>
 		 				<img src={props.user!==null && props.user.foto} style={{width:'100%',height:'100%'}} />
-		 				</div>
-		 				<div className="mt-4">
-		 					<h3 style={{color:'grey'}}>{props.user!==null && String(props.user.nama).toUpperCase()}</h3>
-		 				</div>
-		 				</center>
-		 			</Col>
+		 				</div>		 			
+		 			</Col>		 			
 		 		</Row>
+		 		<Row>
+		 			<Col>
+		 				<div className="mt-4">
+		 					<center><h3 style={{color:'grey'}}>{props.user!==null && String(props.user.nama).toUpperCase()}</h3></center>
+		 				</div>		 				 
+		 			</Col>
+		 		</Row>	
 		 		<Row className="justify-content-md-center">
 		 			<Col xs={12} sm={12} md={10} lg={8}>
 		 				{ props.user!==null && (

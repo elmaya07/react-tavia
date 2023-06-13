@@ -7,6 +7,8 @@
 	text-align:center;
 	box-shadow: 0.5px 0.5px 3px grey;
 /*	border-bottom: 2px solid #c6af96;*/
+	position: relative;
+	zIndex:100000;
 }
 
 .Menu h2{

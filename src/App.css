@@ -43,3 +43,17 @@ html,body{
     transform: rotate(360deg);
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .hide {
+    display:none;
+    height:10px;
+    background: red;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .mtop {
+    margin-top: 20px;
+  }
+}

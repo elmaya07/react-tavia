@@ -70,8 +70,7 @@ export const setLogout = (token)=>{
 	      method: "post",
 	      url: url+'api/logout',
 	      headers: { "Authorization": "bearer "+token }
-	    }).then(res=>{
-			console.log(res.data)
+	    }).then(res=>{			
 			dispatch(setLogoutActions())
 		}).catch(err=>{
 			console.log(err)
@@ -120,6 +119,36 @@ export const regProccess = (data)=>{
         			msg:JSON.stringify(response.response.data)
         		}})
 	      });
+	}
+}
+
+export const gantiPasswordActions  = (email)=>{	
+	console.log(email)
+	return dispatch =>{
+		axios({
+	      method: "post",
+	      url: url+'forgot-password',
+	      data:new URLSearchParams({
+	      	email:email
+	      }),	     
+	      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+	    }).then(res=>{			
+			if(res.data.code==200){
+				dispatch({type:'REQ_GANTI_PASSWORD_SUCCESS',payload:{
+					msg:res.data.message
+				}})
+			}else{
+				dispatch({type:'REQ_GANTI_PASSWORD_FAILED',payload:{
+					msg:res.data.message
+				}})
+			}
+		}).catch(err=>{
+			console.log(err)
+			dispatch({type:'REQ_GANTI_PASSWORD_FAILED',payload:{
+				msg:err
+			}})
+
+		})
 	}
 }
 

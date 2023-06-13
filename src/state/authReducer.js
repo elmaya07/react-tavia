@@ -5,7 +5,9 @@ import {
 	REG_SUCCESS,
 	REG_FAILED,
 	LOGIN_FAILED,
-	RESET_MSG
+	RESET_MSG,
+	REQ_GANTI_PASSWORD_SUCCESS,
+	REQ_GANTI_PASSWORD_FAILED
 } from './types';
 
 
@@ -20,6 +22,7 @@ const initState = {
 	token:token||null,
 	expires:expires||0,
 	regSuccess:false,
+	status:200,
 	msg:''
 }
 
@@ -73,7 +76,18 @@ const authReducer = (state=initState,action)=>{
 			...state,
 			msg:''
 		}
-
+	case REQ_GANTI_PASSWORD_SUCCESS:
+		return{
+			...state,
+			status:200,
+			msg:action.payload.msg
+		}
+	case REQ_GANTI_PASSWORD_FAILED:
+		return{
+			...state,
+			status:401,
+			msg:action.payload.msg
+		}
 	default:
 		return state;
 	}

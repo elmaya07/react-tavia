@@ -1,9 +1,11 @@
 import {Container,Row,Col,Form,Button,Alert,InputGroup } from 'react-bootstrap/';
-import Header from './Header'
+import Header from './Header';
+import Garfik from './Garfik';
 import {Navigate} from 'react-router-dom';
-import {useState,useEffect} from 'react';
+import {useState,useEffect,useRef} from 'react';
 import {logiProccess,regProccess} from '../state/actions'
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 // auth component
 function Auth(props) {
@@ -18,18 +20,24 @@ function Auth(props) {
 	const [inputTypeLogin,setInputTypeLogin] = useState('password');
 	const [labelTypeLogin,setLabelTypeLogin] = useState('show');
 
+	const [loginRef,setLoginRef] = useState(false);
+	const [regRef,setRegRef] = useState(false);
+
 	const setLogin = ()=>{
 		let data = {
 			email:email,
 			password:password
 		}
+		setLoginRef(true)
 		props.setLogin(data)
 		setTimeout(()=>{
 				props.setReset()
 		},3000)
+		setLoginRef(false)
 	}
 
 	const setRegister = ()=>{
+		setRegRef(true)
 		let data = {
 			nama:namaLakiLaki||namaPerempuan,
 			email:email,
@@ -42,6 +50,7 @@ function Auth(props) {
 		setTimeout(()=>{
 				props.setReset()
 		},3000)
+		setRegRef(false)
 	}
 
 	const showHide = ()=>{
@@ -64,18 +73,24 @@ function Auth(props) {
 		}
 	}
 
-   if(props.dataLogin.isLogged==true){
+	useEffect(()=>{
+		// loginRef.current.disabled
+	})
+
+   if(props.dataLogin.isLogged===true){
 	 	return <Navigate to="/profile" replace={true} />
 	 }else if(props.dataLogin.regSuccess===true){
 	 	return <Navigate to="/verif" replace={false} />
 	 }else{
 	 	return (
   	<>
-  	<Header/>
-    <Container fluid>    
+  	<Garfik />
+  	<Header />
+  	
+    <Container fluid className="mtop">    
     	<br/><br/>	
 
-    	<Row  className="justify-content-md-center">
+    	<Row  className="justify-content-md-center mt-4">
     		<Col lg={7}>
     			{props.dataLogin.msg !== "" && (<Alert variant="danger">{props.dataLogin.msg }</Alert>)}
     		</Col>
@@ -83,11 +98,8 @@ function Auth(props) {
         
 
       <Row>
-        <Col xs={12} lg={6}>
-
-
-        	
-        	<Row className="justify-content-md-center" style={{paddingTop:'30px'}}>
+        <Col xs={12} lg={6}>        	
+        	<Row className="justify-content-md-center">
         		<Col lg={8}>
         			<h3  style={{color:'#c6af96',fontWeight:'bold'}}>Sign In</h3>
         			<p style={{color:'#c6af96'}}>Masuk dan buat undangan pernikahan kamu, kemudian share undangan kamu</p>
@@ -111,11 +123,11 @@ function Auth(props) {
 
 					     <Row>
 					     	<Col>
-					     		<Button variant="primary" onClick={setLogin} className="btn">Sign In</Button>	
+					     		<Button variant="primary" disabled={loginRef}  onClick={setLogin} className="btn">Sign In</Button>	
 					     	 	
 					     	</Col>
 					     	<Col className="justify-content-md-end">					     		 
-					     		<a  style={{fontWeight:'bold',color:'#c6af96',display:'inline-block',float:'right'}}>Lupa Password</a> 					     		 
+					     		<span  style={{fontWeight:'bold',color:'#c6af96',display:'inline-block',float:'right'}}> <Link style={{color:'#c6af96'}} to="/lupa-password">Lupa Password</Link> </span> 					     		 
 					     	</Col>
 					     </Row>
 					    </Form>
@@ -125,10 +137,12 @@ function Auth(props) {
         </Col>
         <Col xs={12} lg={6} style={{borderLeft:'2px solid #c6af96'}}>
         <Row className="justify-content-md-center" style={{paddingTop:'30px'}}>
-        		<Col lg={8}>        	 
+        		<Col lg={8} >        	 
         	
-        			<h3  style={{color:'#c6af96',fontWeight:'bold'}}>Daftar</h3>
-        			<p style={{color:'#c6af96'}}>Buat undangan pernikahanmu dengan elegan</p>
+        			<Col lg={12} className="d-flex justify-content-end" ><h3  style={{color:'#c6af96',fontWeight:'bold'}}>Sign Up</h3></Col>
+        			<Col lg={12} className="d-flex justify-content-end" style={{color:'#c6af96'}}>Buat undangan pernikahanmu dengan elegan</Col>
+        			<Col lg={12} className="d-flex justify-content-end mb-4" > <b>Your altenative wedding inivtation </b> </Col>
+        			
 	        		<Form>
 					 	
 					      <Form.Group className="mb-3 Txt" controlId="exampleForm.ControlInput1">		        
@@ -160,7 +174,7 @@ function Auth(props) {
 					     <Row>
 					      
 					     	<Col className="justify-content-md-around">					     		 
-					     		 	<Button onClick={setRegister} variant="primary" className="btn">Buat Undanganmu Sekarang</Button>					     		 
+					     		 	<Button onClick={setRegister} disabled={regRef} variant="primary" className="btn">Buat Undanganmu Sekarang</Button>					     		 
 					     	</Col>
 					     </Row>
 					    </Form>
@@ -169,6 +183,7 @@ function Auth(props) {
         	</Col>
       </Row>
     </Container>
+    <div style={{height:'100px'}}></div>
     </>
   )
 	}
