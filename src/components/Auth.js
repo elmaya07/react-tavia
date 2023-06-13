@@ -1,4 +1,4 @@
-import {Container,Row,Col,Form,Button,Alert } from 'react-bootstrap/';
+import {Container,Row,Col,Form,Button,Alert,InputGroup } from 'react-bootstrap/';
 import Header from './Header'
 import {Navigate} from 'react-router-dom';
 import {useState,useEffect} from 'react';
@@ -13,6 +13,10 @@ function Auth(props) {
 	const [noHp,setNoHp] = useState('');
 	const [namaLakiLaki,setNamaLakiLaki] = useState('');
 	const [namaPerempuan,setNamaPerempuan] = useState('password');
+	const [inputType,setInputType] = useState('password');
+	const [labelType,setLabelType] = useState('show');
+	const [inputTypeLogin,setInputTypeLogin] = useState('password');
+	const [labelTypeLogin,setLabelTypeLogin] = useState('show');
 
 	const setLogin = ()=>{
 		let data = {
@@ -20,6 +24,9 @@ function Auth(props) {
 			password:password
 		}
 		props.setLogin(data)
+		setTimeout(()=>{
+				props.setReset()
+		},3000)
 	}
 
 	const setRegister = ()=>{
@@ -32,14 +39,30 @@ function Auth(props) {
 			nama_perempuan:namaPerempuan
 		}
 		props.setRegister(data)
-	}
-
-	useEffect(()=>{
 		setTimeout(()=>{
 				props.setReset()
 		},3000)
-	},[])
+	}
 
+	const showHide = ()=>{
+		if(inputType=='password'){
+			setInputType('text')
+			setLabelType('Hide')
+		}else{
+			setInputType('password')
+			setLabelType('Show')
+		}
+	}
+
+	const showHideLogin = ()=>{
+		if(inputTypeLogin=='password'){
+			setInputTypeLogin('text')
+			setLabelTypeLogin('Hide')
+		}else{
+			setInputTypeLogin('password')
+			setLabelTypeLogin('Show')
+		}
+	}
 
    if(props.dataLogin.isLogged==true){
 	 	return <Navigate to="/profile" replace={true} />
@@ -73,16 +96,26 @@ function Auth(props) {
 					        <Form.Control type="email"  onChange={(e)=>setEmail(e.target.value)} placeholder="Alamat Email" />
 					      </Form.Group>
 
-					      <Form.Group className="mb-3 Txt" controlId="exampleForm.ControlInput2">					       
-					        <Form.Control type="password"  onChange={(e)=>setPassword(e.target.value)} placeholder="Password" />
-					      </Form.Group>		
+					      <InputGroup className="mb-3">
+					        <Form.Control
+					        	type={inputTypeLogin}
+					        	 onChange={(e)=>setPassword(e.target.value)} 
+					          placeholder="Password"
+					          aria-label="Password"
+					          aria-describedby="basic-addon2"
+					        />
+					        <InputGroup.Text id="basic-addon2">
+					        <a onClick={showHideLogin}>{labelTypeLogin}</a>
+					        </InputGroup.Text>
+					      </InputGroup>
+
 					     <Row>
 					     	<Col>
 					     		<Button variant="primary" onClick={setLogin} className="btn">Sign In</Button>	
 					     	 	
 					     	</Col>
-					     	<Col className="justify-content-md-around">					     		 
-					     		<a  style={{fontWeight:'bold',color:'#c6af96'}}>Lupa Password</a> 					     		 
+					     	<Col className="justify-content-md-end">					     		 
+					     		<a  style={{fontWeight:'bold',color:'#c6af96',display:'inline-block',float:'right'}}>Lupa Password</a> 					     		 
 					     	</Col>
 					     </Row>
 					    </Form>
@@ -112,10 +145,18 @@ function Auth(props) {
 					      <Form.Group className="mb-3 Txt" controlId="exampleForm.ControlInput1">		        
 					        <Form.Control type="text"  onChange={(e)=>setNamaPerempuan(e.target.value)}  placeholder="Nama Panggilan Perempuan" />
 					      </Form.Group>
-
-					      <Form.Group className="mb-3 Txt" controlId="exampleForm.ControlInput2">					       
-					        <Form.Control type="password"  onChange={(e)=>setPassword(e.target.value)}  placeholder="Password" />
-					      </Form.Group>		
+					      <InputGroup className="mb-3">
+					        <Form.Control
+					        	type={inputType}
+					        	 onChange={(e)=>setPassword(e.target.value)} 
+					          placeholder="Password"
+					          aria-label="Password"
+					          aria-describedby="basic-addon2"
+					        />
+					        <InputGroup.Text id="basic-addon2">
+					        <a onClick={showHide}>{labelType}</a>
+					        </InputGroup.Text>
+					      </InputGroup>
 					     <Row>
 					      
 					     	<Col className="justify-content-md-around">					     		 
