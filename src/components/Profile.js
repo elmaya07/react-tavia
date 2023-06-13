@@ -36,7 +36,7 @@ function Profile(props){
 		 			</Col>
 		 		</Row>	
 		 		<Row className="justify-content-md-center">
-		 			<Col xs={12} sm={12} md={10} lg={8}>
+		 			<Col xs={12} sm={12} md={8} lg={6}>
 		 				{ props.user!==null && (
 		 					<Form>					    	
 							      <Row className="mt-4">

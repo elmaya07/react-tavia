@@ -36,6 +36,7 @@ export const logiProccess = (data)=>{
 			        	};
 			        	dispatch(setLogin(d));	
 	        	}else{
+
 	        		dispatch({type:LOGIN_FAILED,payload:{
 	        			msg:`${response.data.message}, ${response.data.urlActivation} `
 	        		}})
@@ -44,7 +45,10 @@ export const logiProccess = (data)=>{
 	      })
 	      .catch(function (response) {
 	        //handle error
-	        console.log(response);
+	        dispatch({type:LOGIN_FAILED,payload:{
+	        			msg:'Unauthorized'
+	        		}})
+	        console.log(response.data);
 	      });
 	}
 }
@@ -57,6 +61,28 @@ export const getUser = (token)=>{
 			console.log(res.data)
 			dispatch(setUser(res.data.data))
 		}).catch(err=>{
+			console.log(err)
+		})
+	}
+}
+
+
+export const gPassword = (params)=>{	
+	return dispatch =>{
+		axios({
+			method:"POST",
+			url:url+'api/ganti-password',
+			data:new URLSearchParams({
+				password:params.password,
+				id:params.id
+			}),
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+		}).then(res=>{
+			if(res.data==1){				 
+				dispatch({type:'GANTI_PASSWORD_OK'})
+			}
+		}).catch(err=>{
+			dispatch({type:'GANTI_PASSWORD_FAILED'})
 			console.log(err)
 		})
 	}

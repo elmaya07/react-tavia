@@ -14,6 +14,15 @@ export default function LupaPassword(){
 	const state = useSelector(state=>state);
 	const dispatch = useDispatch();
 
+	let p = new Promise((resolve, reject) => {
+    setTimeout(() => {        	
+            resolve()        
+            reject()
+        
+    }, 2000)
+})
+
+
 	const gantiPassword = ()=>{
 		setLoginRef(true)
 		dispatch(gantiPasswordActions(email));
@@ -21,7 +30,12 @@ export default function LupaPassword(){
 			dispatch({type:'RESET_MSG'})			
 		},3000)
 		setEmail('');
-		setLoginRef(false)
+		p.then((result) => {
+		    setLoginRef(false)
+		}).catch((error) => {
+		    setLoginRef(false)
+		})
+		
 	}
 
 	return(

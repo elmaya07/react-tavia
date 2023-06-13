@@ -80,7 +80,7 @@ function Auth(props) {
    if(props.dataLogin.isLogged===true){
 	 	return <Navigate to="/profile" replace={true} />
 	 }else if(props.dataLogin.regSuccess===true){
-	 	return <Navigate to="/verif" replace={false} />
+	 	return <Navigate to="/verif"  />
 	 }else{
 	 	return (
   	<>
@@ -120,11 +120,9 @@ function Auth(props) {
 					        <a onClick={showHideLogin}>{labelTypeLogin}</a>
 					        </InputGroup.Text>
 					      </InputGroup>
-
 					     <Row>
 					     	<Col>
-					     		<Button variant="primary" disabled={loginRef}  onClick={setLogin} className="btn">Sign In</Button>	
-					     	 	
+					     		<Button variant="primary" disabled={loginRef}  onClick={setLogin} className="btn">Sign In</Button>						     	 	
 					     	</Col>
 					     	<Col className="justify-content-md-end">					     		 
 					     		<span  style={{fontWeight:'bold',color:'#c6af96',display:'inline-block',float:'right'}}> <Link style={{color:'#c6af96'}} to="/lupa-password">Lupa Password</Link> </span> 					     		 
@@ -133,26 +131,21 @@ function Auth(props) {
 					    </Form>
 				</Col>					   
         	</Row>
-
         </Col>
         <Col xs={12} lg={6} style={{borderLeft:'2px solid #c6af96'}}>
-        <Row className="justify-content-md-center" style={{paddingTop:'30px'}}>
+        <Row className="justify-content-md-center"  >
         		<Col lg={8} >        	 
         	
         			<Col lg={12} className="d-flex justify-content-end" ><h3  style={{color:'#c6af96',fontWeight:'bold'}}>Sign Up</h3></Col>
         			<Col lg={12} className="d-flex justify-content-end" style={{color:'#c6af96'}}>Buat undangan pernikahanmu dengan elegan</Col>
-        			<Col lg={12} className="d-flex justify-content-end mb-4" > <b>Your altenative wedding inivtation </b> </Col>
-        			
-	        		<Form>
-					 	
+        			<Col lg={12} className="d-flex justify-content-end mb-4" > <b>Your altenative wedding inivtation </b> </Col>        			
+	        		<Form>					 	
 					      <Form.Group className="mb-3 Txt" controlId="exampleForm.ControlInput1">		        
 					        <Form.Control type="email"  onChange={(e)=>setEmail(e.target.value)}  placeholder="Alamat Email" />
 					      </Form.Group>
-
 					      <Form.Group className="mb-3 Txt" controlId="exampleForm.ControlInput1">		        
 					        <Form.Control type="text"  onChange={(e)=>setNoHp(e.target.value)}  placeholder="Nomor HP" />
 					      </Form.Group>
-
 					      <Form.Group className="mb-3 Txt" controlId="exampleForm.ControlInput1">		        
 					        <Form.Control type="text"  onChange={(e)=>setNamaLakiLaki(e.target.value)}  placeholder="Nama Panggilan Laki-laki" />
 					      </Form.Group>

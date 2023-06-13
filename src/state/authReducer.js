@@ -22,7 +22,7 @@ const initState = {
 	token:token||null,
 	expires:expires||0,
 	regSuccess:false,
-	status:200,
+	status:0,
 	msg:''
 }
 
@@ -87,6 +87,16 @@ const authReducer = (state=initState,action)=>{
 			...state,
 			status:401,
 			msg:action.payload.msg
+		}
+	case 'GANTI_PASSWORD_OK':
+		return{
+			...state,
+			status:200, 
+		}
+	case 'GANTI_PASSWORD_FAILED':
+		return{
+			...state,
+			status:401, 
 		}
 	default:
 		return state;
