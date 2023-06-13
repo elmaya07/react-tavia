@@ -1,0 +1,12 @@
+ 
+.Txt{
+	border:1px solid #c6af96;	
+	color: #c6af96;	
+} 
+
+.btn{
+	background: #d5a26e;		
+	border:1px solid #c6af96 ;
+	color:white;
+	box-shadow: 2px 2px 5px grey;
+}
