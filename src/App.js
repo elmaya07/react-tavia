@@ -40,7 +40,6 @@ function App() {
         <Route path="/" element={<Auth/>} />
         <Route path="/verif" element={<Verif/>} />
         <Route path="/lupa-password" element={<LupaPassword/>} />
-        LupaPassword
         <Route path="/profile" element={
           <ProtectedRoute isLogged={state.isLogged}>
               <Profile />
