@@ -64,6 +64,10 @@ const authReducer = (state=initState,action)=>{
 			user:action.payload.user,
 		}
 	case SET_LOGOUT:
+		sessionStorage.setItem("isLogged",false)
+		sessionStorage.setItem("user",null)
+		sessionStorage.setItem("token",null)
+		sessionStorage.setItem("expires",null)
 		return{
 			...state,
 			isLogged:false,
