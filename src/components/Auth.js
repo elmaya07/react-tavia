@@ -182,7 +182,7 @@ function Auth(props) {
         	</Col>
       </Row>
     </Container>
-    <div style={{height:'100px'}}></div>
+    <div style={{height:'50px'}}></div>
     </>
   )
 	}
