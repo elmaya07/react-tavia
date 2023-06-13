@@ -5,7 +5,7 @@ import {useState,useEffect} from 'react';
 import {logiProccess,regProccess} from '../state/actions'
 import {connect} from 'react-redux';
 
-
+// auth component
 function Auth(props) {
 
 	const [email,setEmail] = useState('eliskadamayanti24@admin.com');
