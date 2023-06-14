@@ -7,13 +7,10 @@ import {useSelector,useDispatch} from 'react-redux';
 import {gantiPasswordActions,setReset} from '../state/actions'
 
 export default function LupaPassword(){
-
 	const [email,setEmail] = useState('');
 	const [loginRef,setLoginRef] = useState(false);
-
 	const state = useSelector(state=>state.authReducer);
 	const dispatch = useDispatch();
-
 	let p = new Promise((resolve, reject) => {
     setTimeout(() => {        	
             resolve()        
@@ -21,8 +18,6 @@ export default function LupaPassword(){
         
     }, 2000)
 })
-
-
 	const gantiPassword = ()=>{
 		if(email=='') return false;
 		setLoginRef(true)
@@ -36,7 +31,6 @@ export default function LupaPassword(){
 		}).catch((error) => {
 		    setLoginRef(false)
 		})
-
 	}
 
 	return(

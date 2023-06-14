@@ -2,7 +2,7 @@
 	background-color: white;	
 	height:90px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 	text-align:center;
 	box-shadow: 0.5px 0.5px 3px grey;
@@ -35,4 +35,16 @@
 	padding:0px;
 	margin:0px;
 	color:grey;
+}
+.nav{
+	display: inline-block;
+}
+.nav li{
+	display: inline-block;
+	margin-right:20px;
+	font-weight:bold;
+	color:#c6af96;
+}
+.Menu-child{
+	width: 30.3%;
 }
