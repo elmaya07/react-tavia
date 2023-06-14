@@ -17,7 +17,7 @@ import axios from 'axios';
 //app component
 function App() {
   const dispatch = useDispatch();
-  const state = useSelector(state=>state);
+  const state = useSelector(state=>state.authReducer);
 
    const timeout = () => {
       setTimeout(()=> {
@@ -57,7 +57,7 @@ function App() {
 
 function Verif(){
    const navigate = useNavigate();
-  const state = useSelector(state=>state);
+  const state = useSelector(state=>state.authReducer);
   return (
     <div style={{width:'100%',height:'500px',display:'flex',justifyContent:'center',alignItems:'center'}}>
     <center>

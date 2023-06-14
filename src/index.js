@@ -7,10 +7,11 @@ import {Provider} from 'react-redux';
 import {createStore,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'
 import authReducer from './state/authReducer';
+import allReducer from './state/allReducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const store = createStore(authReducer,applyMiddleware(thunk));
+const store = createStore(allReducer,applyMiddleware(thunk));
 
 root.render(
   <React.StrictMode>

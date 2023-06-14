@@ -11,7 +11,7 @@ export default function LupaPassword(){
 	const [email,setEmail] = useState('');
 	const [loginRef,setLoginRef] = useState(false);
 
-	const state = useSelector(state=>state);
+	const state = useSelector(state=>state.authReducer);
 	const dispatch = useDispatch();
 
 	let p = new Promise((resolve, reject) => {

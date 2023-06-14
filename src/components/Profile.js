@@ -70,8 +70,8 @@ function Profile(props){
 
 const mapStateToProps = state=>{
 	return{
-		user:state.user,
-		dataLogin:state
+		user:state.authReducer.user,
+		dataLogin:state.authReducer
 	}
 }
 

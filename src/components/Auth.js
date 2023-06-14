@@ -191,7 +191,7 @@ function Auth(props) {
 
 const mapStateToProps= state=>{
 	return{
-		dataLogin:state
+		dataLogin:state.authReducer
 	}
 }
 
