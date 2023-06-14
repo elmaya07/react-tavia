@@ -14,9 +14,9 @@ import {useSelector,useDispatch} from 'react-redux';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
 
+//app component
 function App() {
   const dispatch = useDispatch();
-
   const state = useSelector(state=>state);
 
    const timeout = () => {
