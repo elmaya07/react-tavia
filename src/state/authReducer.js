@@ -23,11 +23,17 @@ const initState = {
 	expires:expires||0,
 	regSuccess:false,
 	status:0,
-	msg:''
+	msg:'',
+	loading:false,
 }
 
 const authReducer = (state=initState,action)=>{
 	switch(action.type){
+	case 'LOGIN_START':
+		return{
+			...state,
+			loading:true,
+		}
 	case SET_LOGIN:
 		sessionStorage.setItem("isLogged",true)
 		sessionStorage.setItem("user",JSON.stringify(action.payload.user))
@@ -38,13 +44,15 @@ const authReducer = (state=initState,action)=>{
 			isLogged:true,
 			user:action.payload.user,
 			token:action.payload.token,
-			expires:action.payload.expires
+			expires:action.payload.expires,
+			loading:false,
 		}
 	case LOGIN_FAILED:
 		return{
 			...state, 
 			isLogged:false,
-			msg:action.payload.msg
+			msg:action.payload.msg,
+			loading:false,
 		}
 	case REG_SUCCESS:
 		return{

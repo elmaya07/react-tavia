@@ -88,7 +88,7 @@ function Auth(props) {
 		return (
 			<>
 				<Garfik />
-				<Header />
+				<Header title="LOGIN" />
 				<Container fluid className="mtop">
 					<br /><br />
 					<Row className="justify-content-md-center  mobile">
@@ -125,7 +125,7 @@ function Auth(props) {
 												<span style={{ fontWeight: 'bold', color: '#c6af96', display: 'inline-block', float: 'left' }}> <Link style={{ color: '#c6af96' }} to="/lupa-password">Lupa Password</Link> </span>
 											</Col>
 											<Col className="justify-content-md-end">
-												<Button variant="primary" style={{ display: 'inline-block', float: 'right' }} onClick={setLogin} className="btn">Sign In</Button>
+												<Button variant="primary" style={{ display: 'inline-block', float: 'right' }} disabled={props.dataLogin.loading} onClick={setLogin} className="btn">{props.dataLogin.loading==true ? 'Wait...' : 'Sign In'}</Button>
 
 											</Col>
 										</Row>

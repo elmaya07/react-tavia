@@ -17,7 +17,7 @@ function Profile(props) {
 	return (
 		<>
 			<Garfik />
-			<Header />
+			<Header title="MNTN" />
 			<div style={{ height: '90px' }}></div>
 			<Container fluid className="mt-4">
 				<Row className=" d-flex justify-content-center mt-4">

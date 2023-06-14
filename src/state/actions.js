@@ -14,6 +14,7 @@ const url = 'http://shop.simpus-web.my.id/public/';
 export const logiProccess = (data)=>{
 
 	return dispatch=>{
+		dispatch({type:'LOGIN_START'})
 		axios({
 	      method: "post",
 	      url: url+'api/login',
